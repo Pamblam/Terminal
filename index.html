@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>TODO supply a title</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link type="text/css" href="Terminal.css" rel="stylesheet" />
+	</head>
+	<body>
+		<h3>Terminal.js Example</h3>
+		<p>Simple terminal UI component with jQuery</p>
+		<textarea id="terminal"></textarea>
+		<script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
+		<script src="Terminal.js"></script>
+		<script>
+			$("#terminal").Terminal({
+				io: function(input, output, done){
+					var args = input.split(" ");
+					var command = args.shift();
+					if(command === "echo") output(args.join(' '));
+					if(command === "alert") alert(args.join(' '));
+					else output('Not a valid command');
+					done();
+				}
+			});
+		</script>
+	</body>
+</html>
